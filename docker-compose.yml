@@ -1,0 +1,46 @@
+version: "2.1"
+
+volumes:
+  caddy_data: {}
+
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Vienna
+      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+      - WHITELIST=${WHITELIST}
+      - USER=${ADMIN_USER} #optional
+      - PASS=${ADMIN_PASS} #optional
+      - HOST_WHITELIST=${TRANSMISSION_DOMAIN}
+    volumes:
+      - ${APP_DIR}/config:/config
+      - ${APP_DIR}/downloads:/downloads
+      - ${APP_DIR}watch:/watch
+      - ${FILE_DIR}:/stuff
+      - ${FILE_DIR2}:/stuff2
+    expose:
+      - 9091
+    ports:
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped
+
+  caddy:
+    image: slothcroissant/caddy-cloudflaredns:2.6.1
+    container_name: transmission-caddy
+    ports:
+      - "9095:9095"
+    volumes:
+      - ${APP_DIR}/caddy:/etc/caddy
+      - caddy_data:/data
+    environment:
+      - TZ=Europe/Vienna
+      - CLOUDFLARE_EMAIL=${CLOUDFLARE_EMAIL}
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
+      - TRANSMISSION_DOMAIN=${TRANSMISSION_DOMAIN}
+      - ACME_AGREE=true
+    restart: unless-stopped

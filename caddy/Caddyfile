@@ -1,0 +1,6 @@
+{$TRANSMISSION_DOMAIN}:9095 {
+    tls {$CLOUDFLARE_EMAIL} {
+        dns cloudflare {$CLOUDFLARE_API_TOKEN}
+    }
+    reverse_proxy transmission:9091
+}
