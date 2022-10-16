@@ -12,7 +12,7 @@ services:
       - PGID=1000
       - TZ=Europe/Vienna
       - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
-      - WHITELIST=${WHITELIST}
+      #- WHITELIST=${WHITELIST}
       - USER=${ADMIN_USER} #optional
       - PASS=${ADMIN_PASS} #optional
       - HOST_WHITELIST=${TRANSMISSION_DOMAIN}
