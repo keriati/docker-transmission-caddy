@@ -1,6 +1,6 @@
-# Scrutiny with Caddy
+# Transmission with Caddy in Docker
 
-Use Scrutiny with green https on your local network.
+Use Transmission with green https for the web interface on your local network.
 
 Requirements
 - Own domain
