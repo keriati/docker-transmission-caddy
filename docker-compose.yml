@@ -19,9 +19,9 @@ services:
     volumes:
       - ${APP_DIR}/config:/config
       - ${APP_DIR}/downloads:/downloads
-      - ${APP_DIR}watch:/watch
-      - ${FILE_DIR}:/stuff
-      - ${FILE_DIR2}:/stuff2
+      - ${APP_DIR}/watch:/watch
+      - ${FILE_DIR}:/plex
+      - ${FILE_DIR2}:/downloads
     expose:
       - 9091
     ports:
