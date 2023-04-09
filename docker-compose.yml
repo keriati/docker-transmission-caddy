@@ -18,7 +18,6 @@ services:
       - HOST_WHITELIST=${TRANSMISSION_DOMAIN}
     volumes:
       - ${APP_DIR}/config:/config
-      - ${APP_DIR}/downloads:/downloads
       - ${APP_DIR}/watch:/watch
       - ${FILE_DIR}:/plex
       - ${FILE_DIR2}:/downloads
